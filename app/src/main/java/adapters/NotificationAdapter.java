@@ -49,12 +49,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, NotificationDetail.class);
-                intent.putExtra("event_date", model.getEvent_date());
-                intent.putExtra("event_month",model.getEvent_month());
-                intent.putExtra("event_name",model.getEvent_name());
-                intent.putExtra("ngo_name",model.getNgo_name());
+                intent.putExtra("ngo name", model.getNgo_name());
+                intent.putExtra("event name",model.getEvent_name());
                 intent.putExtra("type",1);
-
                 context.startActivity(intent);
 
             }

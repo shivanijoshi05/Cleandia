@@ -1,15 +1,15 @@
 package com.example.cleandia;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.cleandia.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,8 @@ public class Notification extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ActivityMainBinding binding;
+    NotificationAdapter adapter;
+    ArrayList<NotificationModel> list;
     public Notification() {
         // Required empty public constructor
     }
@@ -57,13 +58,21 @@ public class Notification extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
-        ArrayList<NotificationModel> list = new ArrayList<>();
+
+    }
+    
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_notification, container, false);
+        // Inflate the layout for this fragment
+        list = new ArrayList<>();
         list.add(new NotificationModel("25","Jun","Swachhta - Cleanliness drive","Prerna Foundation"));
         list.add(new NotificationModel("02","Jul" , "Lakshya Campaign" ,"SBA NGO"));
         list.add(new NotificationModel("19","Jul" , "‘Say no to plastic’" ,"Ujjwala Sanstha"));
@@ -72,18 +81,11 @@ public class Notification extends Fragment {
         list.add(new NotificationModel("31", "Aug","Mission Clean Gujarat","Nirmala Foundation"));
         list.add(new NotificationModel("2", "Sep","Nirmal Bharat Abhiyaan","Jyoti NGO"));
 
-        NotificationAdapter adapter = new NotificationAdapter(list, this);
-        binding.RecyclerView.setAdapter(adapter);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        binding.RecyclerView.setLayoutManager(layoutManager);
-    }
-    
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+        RecyclerView Recycler = view.findViewById(R.id.notification_recycler);
+        adapter = new NotificationAdapter(list, getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        Recycler.setLayoutManager(layoutManager);
+        Recycler.setAdapter(adapter);
+        return view;
     }
 }
