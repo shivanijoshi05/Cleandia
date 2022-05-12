@@ -3,10 +3,21 @@ package com.example.cleandia;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+
+import java.util.ArrayList;
+
+import adapters.InformationAdapter;
+import adapters.NotificationAdapter;
+import models.InformationModel;
+import models.NotificationModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +25,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Information extends Fragment {
+
+    GridView waste_types;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +36,8 @@ public class Information extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    InformationAdapter adapter;
+    ArrayList<InformationModel> list;
     public Information() {
         // Required empty public constructor
     }
@@ -49,6 +63,7 @@ public class Information extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -58,7 +73,24 @@ public class Information extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_information, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_information, container, false);
+        list = new ArrayList<>();
+        list.add(new InformationModel("Agricultural", R.drawable.agricultural));
+        list.add(new InformationModel("Chemical", R.drawable.chemical));
+        list.add(new InformationModel("Electronic", R.drawable.electronic));
+        list.add(new InformationModel("Liquid", R.drawable.liquid));
+        list.add(new InformationModel("Kitchen", R.drawable.kitchen));
+        list.add(new InformationModel("Medical", R.drawable.medical));
+        list.add(new InformationModel("Sewage", R.drawable.sewage));
+        list.add(new InformationModel("Industrial", R.drawable.industrial));
+        list.add(new InformationModel("Radioactive", R.drawable.radioactive));
+
+        RecyclerView Recycler = view.findViewById(R.id.waste_recycler);
+        adapter = new InformationAdapter(list, getActivity());
+        GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
+        Recycler.setLayoutManager(layoutManager);
+        Recycler.setAdapter(adapter);
+        return view;
     }
 }

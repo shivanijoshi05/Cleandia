@@ -1,44 +1,44 @@
 package models;
 
 public class NotificationModel {
-    String event_date, event_month, event_name, ngo_name;
+    String eventDate, eventMonth, eventName, ngoName;
 
-    public NotificationModel(String event_date, String event_month, String event_name, String ngo_name) {
-        this.event_date = event_date;
-        this.event_month = event_month;
-        this.event_name = event_name;
-        this.ngo_name = ngo_name;
+    public NotificationModel(String eventDate, String eventMonth, String eventName, String ngoName) {
+        this.eventDate = eventDate;
+        this.eventMonth = eventMonth;
+        this.eventName = eventName;
+        this.ngoName = ngoName;
     }
 
-    public String getEvent_date() {
-        return event_date;
+    public String getEventDate() {
+        return eventDate;
     }
 
-    public void setEvent_date(String event_date) {
-        this.event_date = event_date;
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
     }
 
-    public String getEvent_month() {
-        return event_month;
+    public String getEventMonth() {
+        return eventMonth;
     }
 
-    public void setEvent_month(String event_month) {
-        this.event_month = event_month;
+    public void setEventMonth(String eventMonth) {
+        this.eventMonth = eventMonth;
     }
 
-    public String getEvent_name() {
-        return event_name;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setEvent_name(String event_name) {
-        this.event_name = event_name;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
-    public String getNgo_name() {
-        return ngo_name;
+    public String getNgoName() {
+        return ngoName;
     }
 
-    public void setNgo_name(String ngo_name) {
-        this.ngo_name = ngo_name;
+    public void setNgoName(String ngoName) {
+        this.ngoName = ngoName;
     }
 }

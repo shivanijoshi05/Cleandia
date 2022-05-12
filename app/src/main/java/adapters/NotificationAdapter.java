@@ -40,17 +40,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
         final NotificationModel model = list.get(position);
-        holder.event_date.setText(model.getEvent_date());
-        holder.event_month.setText(model.getEvent_month());
-        holder.event_name.setText(model.getEvent_name());
-        holder.ngo_name.setText(model.getNgo_name());
+        holder.event_date.setText(model.getEventDate());
+        holder.event_month.setText(model.getEventMonth());
+        holder.event_name.setText(model.getEventName());
+        holder.ngo_name.setText(model.getNgoName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, NotificationDetail.class);
-                intent.putExtra("ngo name", model.getNgo_name());
-                intent.putExtra("event name",model.getEvent_name());
+                intent.putExtra("ngo name", model.getNgoName());
+                intent.putExtra("event name",model.getEventName());
                 intent.putExtra("type",1);
                 context.startActivity(intent);
 

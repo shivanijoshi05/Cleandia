@@ -3,10 +3,19 @@ package com.example.cleandia;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
+import adapters.NotificationAdapter;
+import adapters.PostAdapter;
+import models.NotificationModel;
+import models.PostModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +32,8 @@ public class Home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    PostAdapter adapter;
+    ArrayList<PostModel> list;
 
     public Home() {
         // Required empty public constructor
@@ -58,7 +69,20 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        list = new ArrayList<>();
+        list.add(new PostModel(R.drawable.post1,"Isha Joshi","2","Tejas society, Sastrinagar ","77"));
+        list.add(new PostModel(R.drawable.post2,"Siddharth Shah" , "3" ,"Narolgam, Ahmedabad","45"));
+        list.add(new PostModel(R.drawable.post3,"Abhinav Gupta" , "3" ,"Poojya apt, Akhbarnagar","24"));
+        list.add(new PostModel(R.drawable.post4,"Divya Kumari" , "4" ,"Nehrunagar","80"));
+        list.add(new PostModel(R.drawable.post5, "Pallavi Parekh","5","Mahavir Society, Gota,","78"));
+
+        RecyclerView Recycler = view.findViewById(R.id.post_recycler);
+        adapter = new PostAdapter(list, getActivity());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        Recycler.setLayoutManager(layoutManager);
+        Recycler.setAdapter(adapter);
+        return view;
     }
 }
