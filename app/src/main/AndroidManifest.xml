@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cleandia">
         <activity
+            android:name=".InformationDetail"
+            android:exported="false" />
+        <activity
             android:name=".NotificationDetail"
             android:exported="false" />
         <activity android:name=".Login" />
@@ -23,7 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing" />
     </application>
 
 </manifest>

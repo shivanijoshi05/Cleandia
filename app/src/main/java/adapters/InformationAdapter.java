@@ -1,6 +1,7 @@
 package adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cleandia.InformationDetail;
+import com.example.cleandia.NotificationDetail;
 import com.example.cleandia.R;
 
 import java.util.ArrayList;
@@ -39,6 +42,18 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         final InformationModel model = list.get(position);
         holder.waste_name.setText(model.getWasteName());
         holder.waste_image.setImageResource(model.getImageId());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, InformationDetail.class);
+                intent.putExtra("waste type", model.getWasteName());
+                intent.putExtra("image",model.getImageId());
+                intent.putExtra("type",1);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -55,6 +70,8 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             super(itemView);
             waste_name = itemView.findViewById(R.id.waste_name);
             waste_image = itemView.findViewById(R.id.waste_image);
+
+
         }
     }
 }
